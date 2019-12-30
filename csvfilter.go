@@ -15,16 +15,21 @@ import (
 )
 
 var (
-	version = flag.String("version", "", "print the version number")
-	lazy = flag.Bool("lazy", false, "allow lazy csv formats (variable number of columns)")
+	version    = flag.Bool("version", false, "print the version number")
+	lazy       = flag.Bool("lazy", false, "allow lazy csv formats (variable number of columns)")
 	columnsStr = flag.String("c", "", "Index (0 based) for which CSV columns to display (comma separate multiple)")
 )
 
 func main() {
 	flag.Parse()
-	
+	if *version {
+		fmt.Println("csvfilter verison 1.0.0")
+		fmt.Println("https://github.com/jehiah/csvfilter")
+		os.Exit(0)
+	}
+
 	var columns []int
-	
+
 	for _, s := range strings.Split(*columnsStr, ",") {
 		i, err := strconv.Atoi(s)
 		if err != nil {
