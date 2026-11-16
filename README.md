@@ -1,6 +1,16 @@
 # csvfilter
 
-[![Build Status](https://secure.travis-ci.org/jehiah/csvfilter.png?branch=master)](http://travis-ci.org/jehiah/csvfilter) [![GitHub release](https://img.shields.io/github/release/jehiah/csvfilter.svg)](https://github.com/jehiah/csvfilter/releases/latest)
+[![Go package](https://github.com/jehiah/csvfilter/actions/workflows/ci.yml/badge.svg)](https://github.com/jehiah/csvfilter/actions/workflows/ci.yml) [![GitHub release](https://img.shields.io/github/release/jehiah/csvfilter.svg)](https://github.com/jehiah/csvfilter/releases/latest)
+
+## Install
+
+```bash
+go install github.com/jehiah/csvfilter@latest
+```
+
+Pre-built binaries are available on the [releases page](https://github.com/jehiah/csvfilter/releases/latest).
+
+## Usage
 
 `csvfilter` provides an easy way to extract specific CSV columns in a unix pipeline
 
