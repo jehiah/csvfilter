@@ -10,6 +10,8 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"runtime"
+	"runtime/debug"
 	"strconv"
 	"strings"
 )
@@ -20,11 +22,27 @@ var (
 	columnsStr = flag.String("c", "", "Index (0 based) for which CSV columns to display (comma separate multiple)")
 )
 
+// printVersion prints version details derived from the build metadata
+// embedded by the Go toolchain (module version / VCS tag, Go version).
+func printVersion() {
+	v := "(devel)"
+	goVersion := runtime.Version()
+	if info, ok := debug.ReadBuildInfo(); ok {
+		if info.Main.Version != "" {
+			v = info.Main.Version
+		}
+		if info.GoVersion != "" {
+			goVersion = info.GoVersion
+		}
+	}
+	fmt.Printf("csvfilter version %s (built with %s)\n", v, goVersion)
+	fmt.Println("https://github.com/jehiah/csvfilter")
+}
+
 func main() {
 	flag.Parse()
 	if *version {
-		fmt.Println("csvfilter verison 1.0.0")
-		fmt.Println("https://github.com/jehiah/csvfilter")
+		printVersion()
 		os.Exit(0)
 	}
 
